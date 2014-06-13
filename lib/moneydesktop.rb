@@ -1,5 +1,6 @@
 require 'moneydesktop/account'
 require 'moneydesktop/institution'
+require 'moneydesktop/job'
 require 'moneydesktop/member'
 require 'moneydesktop/user'
 require "moneydesktop/version"
@@ -8,6 +9,7 @@ require "moneydesktop/version"
 module Moneydesktop
   include Moneydesktop::Account
   include Moneydesktop::Institution
+  include Moneydesktop::Job
   include Moneydesktop::Member
   include Moneydesktop::User
 
