@@ -1,5 +1,5 @@
 module Moneydesktop
-  module Member
+  module Job
 
     def job(job_guid)
       response = query({
