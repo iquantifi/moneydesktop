@@ -1,6 +1,12 @@
 module Moneydesktop
   module User
 
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+
+    module ClassMethods
+
     #https://developerbeta.moneydesktop.com/alfred/v1-0/api-data-flow.html#step-request-the-mfa-credentials
 
 
@@ -88,5 +94,6 @@ module Moneydesktop
 
    end
 
+    end
   end
 end
