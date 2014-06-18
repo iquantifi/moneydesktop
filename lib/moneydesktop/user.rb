@@ -24,7 +24,7 @@ module Moneydesktop
       #data
       #post https://int-data.moneydesktop.com/sessions
       #header: MD-API-TOKEN from step 2
-      response.session.token
+      response
     end
 
 

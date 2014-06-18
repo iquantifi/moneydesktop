@@ -59,6 +59,8 @@ module Moneydesktop
       headers.merge!({ 'MD-SESSION-TOKEN' => args[:token] }) if args[:token]
       headers.merge!({ 'Accept' => 'application/vnd.moneydesktop.sso.v3' }) if args[:api] == :sso
 
+      p headers
+
       response = HTTParty.send method, base_url+args[:endpoint], query: args[:params], headers: headers
       data     = response.parsed_response
 
