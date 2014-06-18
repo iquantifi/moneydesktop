@@ -35,25 +35,24 @@ module Moneydesktop
 
 
     #2
-    def token
+    def api_token(id)
       response = query({
         api: :sso,
-        endpoint: "/sessions",
-        token: token,
-        method: :POST,
+        endpoint: "#{self.client_id}/users/#{id}/api_token.json",
+        method: :GET,
         params: {
         }
       })
-  #curl -D /dev/stdout -X POST -d '{}' -H 'content-type: application/json' -H 'MD-API-TOKEN: {API_TOKEN}' https://int-data.moneydesktop.com/sessions
-
       #response.session.token
 
       #sso
       #https://int-sso.moneydesktop.com/iQuantifi-Test/users/2/api_token.json (2 = ID)
       #Accept application/vnd.moneydesktop.sso.v3
+
+      response.session.token
     end
 
-    def del_token(id)
+    def del_tokens(id)
       response = query({
         api: :sso,
         endpoint: "#{self.client_id}/users/#{id}/sessions",

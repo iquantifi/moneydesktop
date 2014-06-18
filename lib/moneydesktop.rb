@@ -54,7 +54,7 @@ module Moneydesktop
     def query args
       method   = args[:method].to_s.downcase
       base_url = url args[:api]
-      headers  = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
+      headers  = { 'Content-Type' => 'application/json', 'Accept' => 'application/json', 'MD-API-KEY' => self.api_key }
       headers.merge!({ 'MD-API-TOKEN' => args[:api_token] }) if args[:api_token]
       headers.merge!({ 'MD-SESSION-TOKEN' => args[:token] }) if args[:token]
       headers.merge!({ 'Accept' => 'application/vnd.moneydesktop.sso.v3' }) if args[:api] == :sso
