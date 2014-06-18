@@ -10,12 +10,6 @@ module Moneydesktop
     #https://developerbeta.moneydesktop.com/alfred/v1-0/api-data-flow.html#step-request-the-mfa-credentials
 
 
-
-
-    #Accept: application/vnd.moneydesktop.sso.v3
-    #MD-API-Key: YOUR_ENVIRONMENT_SPECIFIC_API_KEY
-
-
     #3
     def session_token(api_token)
       response = query({
@@ -49,7 +43,7 @@ module Moneydesktop
       #https://int-sso.moneydesktop.com/iQuantifi-Test/users/2/api_token.json (2 = ID)
       #Accept application/vnd.moneydesktop.sso.v3
 
-      response.session.token
+      response.api_token.token
     end
 
     def del_tokens(id)
