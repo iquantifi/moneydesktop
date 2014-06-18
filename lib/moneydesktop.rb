@@ -1,10 +1,12 @@
+require 'httparty'
+require 'hashie'
+
 require 'moneydesktop/account'
 require 'moneydesktop/institution'
 require 'moneydesktop/job'
 require 'moneydesktop/member'
 require 'moneydesktop/user'
 require "moneydesktop/version"
-
 
 module Moneydesktop
   include Moneydesktop::Account
