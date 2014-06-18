@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Moneydesktop::VERSION
   spec.authors       = ["jimski"]
   spec.email         = ["jim.siegienski@iquantifi.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Client access to MD SDK}
+  spec.description   = %q{Client access to MD SDK}
   spec.homepage      = "http://github.com/iquantifi/moneydesktop"
 
   spec.files         = `git ls-files -z`.split("\x0")

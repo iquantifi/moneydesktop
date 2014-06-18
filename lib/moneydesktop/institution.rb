@@ -1,10 +1,18 @@
 module Moneydesktop
   module Institution
 
-    def search_institutions(name)
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+
+    module ClassMethods
+
+    def search_institutions(token, name)
       response = query({
+        api: :data,
         endpoint: "/institutions/search",
         method: :POST,
+        token: token,
         params: {
           name: "#{name}"
         }
@@ -14,9 +22,11 @@ module Moneydesktop
       response.institutions
     end
 
-    def institution(institution_guid)
+    def institution(token, institution_guid)
       response = query({
+        api: :data,
         endpoint: "/institutions/#{institution_guid}",
+        token: token,
         method: :GET,
         params: {
         }
@@ -25,9 +35,25 @@ module Moneydesktop
       response.institution
     end
 
-    def institution_credentials(institution_guid)
+    #this gets a CSV file (cachable listing of all - 10's of thousands)
+    def institutions(token)
       response = query({
+        api: :data,
+        endpoint: "/institutions",
+        token: token,
+        method: :GET,
+        params: {
+        }
+      })
+
+      response
+    end
+
+    def institution_credentials(token, institution_guid)
+      response = query({
+        api: :data,
         endpoint: "/institutions/#{institution_guid}/credentials",
+        token: token,
         method: :GET,
         params: {
         }
@@ -36,19 +62,9 @@ module Moneydesktop
       response.credentials
     end
 
-    #https://developerbeta.moneydesktop.com/alfred/v1-0/members.html#create-member
-    def create_member(institution_guid, credentials)
-      response = query({
-        endpoint: "/members",
-        method: :POST,
-        params: {
-          institution_guid: "#{institution_guid}",
-          credentials: credentials
-        }
-      })
+    #curl -D /dev/stdout https://int-data.moneydesktop.com/institutions -H 'MD-SESSION-TOKEN: WEq80Nu52rET_WlaiOAX3f21KXalx9T8iGwo9umU8nQ8PjFbxOEZLb3odUO8y4VImkup7E_5l3x0B0A4si6L9A' -H 'content-type: application/json'
 
-      response.member
+
     end
-
   end
 end

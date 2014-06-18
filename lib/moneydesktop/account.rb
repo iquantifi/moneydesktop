@@ -1,11 +1,18 @@
 module Moneydesktop
   module Account
 
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
 
-    def accounts
+    module ClassMethods
+
+    def accounts(token)
       response = query({
+        api: :data,
         endpoint: '/accounts',
         method: :GET,
+        token: token,
         params: {
         }
       })
@@ -13,10 +20,12 @@ module Moneydesktop
       response.accounts
     end
 
-    def account(account_guid)
+    def account(token, account_guid)
       response = query({
+        api: :data,
         endpoint: "/accounts/#{account_guid}",
         method: :GET,
+        token: token,
         params: {
         }
       })
@@ -24,9 +33,11 @@ module Moneydesktop
       response.account
     end
 
-    def update_account(account_guid, name)
+    def update_account(token, account_guid, name)
       response = query({
+        api: :data,
         endpoint: "/accounts/#{account_guid}",
+        token: token,
         method: :PUT,
         params: {
           name: "#{name}"
@@ -36,9 +47,11 @@ module Moneydesktop
       response.institution
     end
 
-    def transactions(account_guid)
+    def transactions(token, account_guid)
       response = query({
+        api: :data,
         endpoint: "/accounts/#{account_guid}/transactions",
+        token: token,
         method: :GET,
         params: {
           #from_date:
@@ -52,9 +65,11 @@ module Moneydesktop
       response.transactions
     end
 
-    def update_category(transaction_guid, category_guid, name)
+    def update_category(token, transaction_guid, category_guid, name)
       response = query({
+        api: :data,
         endpoint: "/transactions/#{transaction_guid}",
+        token: token,
         method: :PUT,
         params: {
           user_description: "#{name}",
@@ -63,5 +78,6 @@ module Moneydesktop
       })
     end
 
+    end
   end
 end

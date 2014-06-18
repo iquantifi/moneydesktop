@@ -1,9 +1,17 @@
 module Moneydesktop
-  module Member
+  module Job
 
-    def job(job_guid)
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+
+    module ClassMethods
+
+    def job(token, job_guid)
       response = query({
+        api: :data,
         endpoint: "/jobs/#{job_guid}",
+        token: token,
         method: :GET,
         params: {
 
@@ -19,9 +27,11 @@ module Moneydesktop
       response.job
     end
 
-    def resume(job_guid)
+    def resume(token, job_guid)
       response = query({
+        api: :data,
         endpoint: "/jobs/#{job_guid}/resume",
+        token: token,
         method: :PUT,
         params: {
         }
@@ -30,9 +40,11 @@ module Moneydesktop
       response.job
     end
 
-    def job_credentials(job_guid)
+    def job_credentials(token, job_guid)
       response = query({
+        api: :data,
         endpoint: "/jobs/#{job_guid}/mfa_credentials",
+        token: token,
         method: :GET,
         params: {
         }
@@ -41,5 +53,6 @@ module Moneydesktop
       response.credentials
     end
 
+    end
   end
 end
