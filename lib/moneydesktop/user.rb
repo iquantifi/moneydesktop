@@ -16,7 +16,7 @@ module Moneydesktop
         api: :data,
         endpoint: "/sessions",
         api_token: api_token,
-        method: :DELETE,
+        method: :POST,
         params: {
         }
       })
@@ -24,7 +24,7 @@ module Moneydesktop
       #data
       #post https://int-data.moneydesktop.com/sessions
       #header: MD-API-TOKEN from step 2
-
+      response.session.token
     end
 
 
