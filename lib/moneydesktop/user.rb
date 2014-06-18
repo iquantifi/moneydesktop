@@ -1,3 +1,5 @@
+require 'base64'
+
 module Moneydesktop
   module User
 
@@ -9,25 +11,6 @@ module Moneydesktop
 
     #https://developerbeta.moneydesktop.com/alfred/v1-0/api-data-flow.html#step-request-the-mfa-credentials
 
-
-    #3
-    def session_token(api_token)
-      response = query({
-        api: :data,
-        endpoint: "/sessions",
-        api_token: api_token,
-        method: :POST,
-        params: {
-        }
-      })
-
-      #data
-      #post https://int-data.moneydesktop.com/sessions
-      #header: MD-API-TOKEN from step 2
-      response
-    end
-
-
     #2
     def api_token(id)
       response = query({
@@ -37,13 +20,33 @@ module Moneydesktop
         params: {
         }
       })
-      #response.session.token
 
       #sso
       #https://int-sso.moneydesktop.com/iQuantifi-Test/users/2/api_token.json (2 = ID)
       #Accept application/vnd.moneydesktop.sso.v3
 
       response.api_token.token
+    end
+
+    #3
+    def session_token(id, sso_token)
+      api_token = Base64.encode("#{id}|#{sso_token}|#{self.api_key}")
+
+      response = query({
+        api: :data,
+        endpoint: "/sessions",
+        api_token: api_token,
+        method: :POST,
+        params: {
+        }
+      })
+
+      puts response
+
+      #data
+      #post https://int-data.moneydesktop.com/sessions
+      #header: MD-API-TOKEN from step 2
+      response.session.token
     end
 
     def del_tokens(id)
@@ -55,6 +58,8 @@ module Moneydesktop
         }
       })
       #DELETE /:client_id/users/:id/sessions
+
+      response
     end
 
   #log in a user:
@@ -76,6 +81,8 @@ module Moneydesktop
           }
         }
       })
+
+    response
 
     #API token in header for every call
     #POST mdk  https://int-live.moneydesktop.com/iQuantifi-Test/users.json
