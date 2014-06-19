@@ -30,7 +30,8 @@ module Moneydesktop
 
     #3
     def session_token(api_token)
-      # api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
+      #don't use this (docs are wrong)
+      #api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
 
       response = query({
         api: :data,
@@ -44,6 +45,8 @@ module Moneydesktop
       #data
       #post https://int-data.moneydesktop.com/sessions
       #header: MD-API-TOKEN from step 2
+      #curl -D /dev/stdout -X POST -d '{}' -H 'content-type: application/json' -H 'MD-API-TOKEN: VVNSLTU5N2Q0MmM3LWUxY2UtMDlhZC0zZWU5LTczYTg2NzQzYmI1Mnx4c3FOQlpGRDRyRmNfUGpfcHBMdTAwVFFSV0FxS2dkV3FtYlk1Nk5iNV9aZExDcW5wT1hDRkd0dHh2NVdTR0ZXVVl6LTQzV2k2MUp0VFZzQkgzMEVhQWU0ZDhhMjMwOTBkMjM1ZDY0ODA4MDcyOGUyMDhkYTA4fFlxM1RjcXM4T3oxTmZwdlNZTXRQdXJFNXlqVFJHTVpvdzRzdWZKU1pMblU=' https://int-data.moneydesktop.com/sessions
+
       response.session.token
     end
 

@@ -19,7 +19,10 @@ module Moneydesktop
       })
 
       #response.pagination_data
-      response.institutions
+      response #.institutions
+
+       #curl -D /dev/stdout -X POST -d '{"name":"Wells Fargo", "account_types":"1"}' https://int-data.moneydesktop.com/institutions/search -H 'MD-SESSION-TOKEN: {session_token}' -H 'content-type: application/json'
+
     end
 
     def institution(token, institution_guid)
