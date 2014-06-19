@@ -66,7 +66,7 @@ module Moneydesktop
 
       p headers
 
-      response = HTTParty.send method, base_url+args[:endpoint], query: args[:params], headers: headers
+      response = HTTParty.send method, base_url+args[:endpoint], body: args[:params], headers: headers
       data     = response.parsed_response
 
       if response.success?
