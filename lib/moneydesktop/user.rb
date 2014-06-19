@@ -29,8 +29,8 @@ module Moneydesktop
     end
 
     #3
-    def session_token(id, sso_token)
-      api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
+    def session_token(api_token)
+      # api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
 
       response = query({
         api: :data,
