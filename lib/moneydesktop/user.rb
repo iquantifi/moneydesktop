@@ -15,7 +15,7 @@ module Moneydesktop
     def api_token(id)
       response = query({
         api: :sso,
-        endpoint: "#{self.client_id}/users/#{id}/api_token.json",
+        endpoint: "/#{self.client_id}/users/#{id}/api_token.json",
         method: :GET,
         params: {
         }
@@ -29,8 +29,9 @@ module Moneydesktop
     end
 
     #3
-    def session_token(id, sso_token)
-      api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
+    def session_token(api_token)
+      #don't use this (docs are wrong)
+      #api_token = Base64.encode64("#{id}|#{sso_token}|#{self.api_key}")
 
       response = query({
         api: :data,
@@ -44,13 +45,15 @@ module Moneydesktop
       #data
       #post https://int-data.moneydesktop.com/sessions
       #header: MD-API-TOKEN from step 2
+      #curl -D /dev/stdout -X POST -d '{}' -H 'content-type: application/json' -H 'MD-API-TOKEN: VVNSLTU5N2Q0MmM3LWUxY2UtMDlhZC0zZWU5LTczYTg2NzQzYmI1Mnx4c3FOQlpGRDRyRmNfUGpfcHBMdTAwVFFSV0FxS2dkV3FtYlk1Nk5iNV9aZExDcW5wT1hDRkd0dHh2NVdTR0ZXVVl6LTQzV2k2MUp0VFZzQkgzMEVhQWU0ZDhhMjMwOTBkMjM1ZDY0ODA4MDcyOGUyMDhkYTA4fFlxM1RjcXM4T3oxTmZwdlNZTXRQdXJFNXlqVFJHTVpvdzRzdWZKU1pMblU=' https://int-data.moneydesktop.com/sessions
+
       response.session.token
     end
 
     def del_tokens(id)
       response = query({
         api: :sso,
-        endpoint: "#{self.client_id}/users/#{id}/sessions",
+        endpoint: "/#{self.client_id}/users/#{id}/sessions",
         method: :DELETE,
         params: {
         }
@@ -70,7 +73,7 @@ module Moneydesktop
    def create_user(id, email)
     response = query({
         api: :mdx,
-        endpoint: "#{self.client_id}/users.json",
+        endpoint: "/#{self.client_id}/users.json",
         method: :POST,
         params: {
           user: {

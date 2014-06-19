@@ -62,7 +62,12 @@ module Moneydesktop
       headers['MD-SESSION-TOKEN'] = args[:token] if args[:token]
       headers['Accept'] = 'application/vnd.moneydesktop.sso.v3' if args[:api] == :sso
 
+
+      p '----------'
       p headers
+      p "#{base_url}#{args[:endpoint]}"
+      p args[:params]
+
 
       response = HTTParty.send method, base_url+args[:endpoint], query: args[:params], headers: headers
       data     = response.parsed_response
