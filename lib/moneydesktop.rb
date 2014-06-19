@@ -61,6 +61,8 @@ module Moneydesktop
       headers['MD-API-TOKEN'] = args[:api_token] if args[:api_token]
       headers['MD-SESSION-TOKEN'] = args[:token] if args[:token]
       headers['Accept'] = 'application/vnd.moneydesktop.sso.v3' if args[:api] == :sso
+      headers['Accept'] = 'application/vnd.moneydesktop.mdx.v5+xml' if args[:api] == :mdx
+      headers['Accept'] = 'application/vnd.moneydesktop.v1+json' if args[:api] == :data
 
       p headers
 
