@@ -15,7 +15,7 @@ module Moneydesktop
     def api_token(id)
       response = query({
         api: :sso,
-        endpoint: "#{self.client_id}/users/#{id}/api_token.json",
+        endpoint: "/#{self.client_id}/users/#{id}/api_token.json",
         method: :GET,
         params: {
         }
@@ -50,7 +50,7 @@ module Moneydesktop
     def del_tokens(id)
       response = query({
         api: :sso,
-        endpoint: "#{self.client_id}/users/#{id}/sessions",
+        endpoint: "/#{self.client_id}/users/#{id}/sessions",
         method: :DELETE,
         params: {
         }
@@ -70,7 +70,7 @@ module Moneydesktop
    def create_user(id, email)
     response = query({
         api: :mdx,
-        endpoint: "#{self.client_id}/users.json",
+        endpoint: "/#{self.client_id}/users.json",
         method: :POST,
         params: {
           user: {
