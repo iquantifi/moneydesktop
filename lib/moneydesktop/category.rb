@@ -1,5 +1,5 @@
 module Moneydesktop
-  class Category
+  module Category
 
     def self.included(base)
       base.extend(ClassMethods)
