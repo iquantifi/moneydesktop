@@ -20,5 +20,6 @@ module Moneydesktop
       response.categories
     end
 
+    end
   end
 end
