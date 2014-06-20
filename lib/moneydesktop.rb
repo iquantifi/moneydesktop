@@ -2,6 +2,7 @@ require 'httparty'
 require 'hashie'
 
 require 'moneydesktop/account'
+require 'moneydesktop/category'
 require 'moneydesktop/institution'
 require 'moneydesktop/job'
 require 'moneydesktop/member'
@@ -10,6 +11,7 @@ require "moneydesktop/version"
 
 module Moneydesktop
   include Moneydesktop::Account
+  include Moneydesktop::Category
   include Moneydesktop::Institution
   include Moneydesktop::Job
   include Moneydesktop::Member
