@@ -92,7 +92,18 @@ module Moneydesktop
     #   "email": "test3@iquantifi.com"
     #   }
     # }
+   end
 
+   def delete_user(id)
+    response = query({
+        api: :mdx,
+        endpoint: "/#{self.client_id}/users/#{id}",
+        method: :DELETE,
+        params: {
+        }
+      })
+
+    response
    end
 
     end
