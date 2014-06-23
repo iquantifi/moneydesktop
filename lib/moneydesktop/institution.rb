@@ -19,7 +19,7 @@ module Moneydesktop
       })
 
       #response.pagination_data
-      response #.institutions
+      response.institutions
     end
 
     def institution(token, institution_guid)
