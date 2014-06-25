@@ -76,6 +76,7 @@ module Moneydesktop
       data     = response.parsed_response
 
       p '-----RESPONSE DATA-----'
+      p response.code
       p data
 
       case response.code
