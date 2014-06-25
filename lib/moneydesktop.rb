@@ -7,7 +7,7 @@ require 'moneydesktop/institution'
 require 'moneydesktop/job'
 require 'moneydesktop/member'
 require 'moneydesktop/user'
-require "moneydesktop/version"
+require 'moneydesktop/version'
 
 module Moneydesktop
   include Moneydesktop::Account
@@ -66,15 +66,16 @@ module Moneydesktop
       headers['Accept'] = 'application/vnd.moneydesktop.mdx.v5+json' if args[:api] == :mdx
       headers['Accept'] = 'application/vnd.moneydesktop.v1+json' if args[:api] == :data
 
-
-      p '----------'
+      p '-----REQUEST HEADERS-----'
       p headers
       p "#{base_url}#{args[:endpoint]}"
       p args[:params]
 
-
       response = HTTParty.send method, base_url+args[:endpoint], body: args[:params].to_json, headers: headers
       data     = response.parsed_response
+
+      p '-----RESPONSE DATA-----'
+      p data
 
       if response.success?
         if [ TrueClass, FalseClass, Fixnum ].include?(data.class)

@@ -58,6 +58,8 @@ module Moneydesktop
         params: {
         }
       })
+
+      response
     end
 
     def refresh(token, member_guid)
