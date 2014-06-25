@@ -80,10 +80,12 @@ module Moneydesktop
       p data
 
       case response.code
-        when 404
-          raise NotFound.new(data)
-        when 500
-          raise InternalServerError.new(data)
+      when 401
+        raise TokenError.new(data)
+      when 404
+        raise NotFoundError.new(data)
+      when 500
+        raise InternalServerError.new(data)
       end
 
       if response.success?
