@@ -81,9 +81,9 @@ module Moneydesktop
 
       case response.code
         when 404
-          raise NotFound
+          raise NotFound.new(data)
         when 500
-          raise InternalServerError
+          raise InternalServerError.new(data)
       end
 
       if response.success?
