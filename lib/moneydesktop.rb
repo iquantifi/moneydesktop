@@ -3,6 +3,7 @@ require 'hashie'
 
 require 'moneydesktop/account'
 require 'moneydesktop/category'
+require 'moneydesktop/error'
 require 'moneydesktop/institution'
 require 'moneydesktop/job'
 require 'moneydesktop/member'
@@ -76,6 +77,13 @@ module Moneydesktop
 
       p '-----RESPONSE DATA-----'
       p data
+
+      case response.code
+        when 404
+          raise NotFound
+        when 500
+          raise InternalServerError
+      end
 
       if response.success?
         if [ TrueClass, FalseClass, Fixnum ].include?(data.class)
