@@ -7,76 +7,53 @@ module Moneydesktop
 
     module ClassMethods
 
-    def accounts(token)
-      response = query({
-        api: :data,
-        endpoint: '/accounts',
-        method: :GET,
-        token: token,
-        params: {
-        }
-      })
+      def accounts(token)
+        response = query({
+          api: :data,
+          endpoint: '/accounts.json',
+          token: token,
+          method: :GET
+        })
 
-      response.accounts
-    end
+        response.accounts
+      end
 
-    def account(token, account_guid)
-      response = query({
-        api: :data,
-        endpoint: "/accounts/#{account_guid}",
-        method: :GET,
-        token: token,
-        params: {
-        }
-      })
+      def account(token, account_guid)
+        response = query({
+          api: :data,
+          endpoint: "/accounts/#{account_guid}.json",
+          token: token,
+          method: :GET
+        })
 
-      response.account
-    end
+        response.account
+      end
 
-    def update_account(token, account_guid, name)
-      response = query({
-        api: :data,
-        endpoint: "/accounts/#{account_guid}",
-        token: token,
-        method: :PUT,
-        params: {
-          name: "#{name}"
-        }
-      })
+      def update_account(token, account_guid, name)
+        response = query({
+          api: :data,
+          endpoint: "/accounts/#{account_guid}.json",
+          token: token,
+          method: :PUT,
+          data: {
+            name: name
+          }
+        })
 
-      response.institution
-    end
+        response.institution
+      end
 
-    def transactions(token, account_guid)
-      response = query({
-        api: :data,
-        endpoint: "/accounts/#{account_guid}/transactions",
-        token: token,
-        method: :GET,
-        params: {
-          #from_date:
-          #to_date:
-          #page:
-          #record_per_page:
-        }
-      })
+      def transactions(token, account_guid)
+        response = query({
+          api: :data,
+          endpoint: "/accounts/#{account_guid}/transactions.json",
+          token: token,
+          method: :GET
+        })
 
-      #response.pagination_data
-      response.transactions
-    end
-
-    def update_category(token, transaction_guid, category_guid, name)
-      response = query({
-        api: :data,
-        endpoint: "/transactions/#{transaction_guid}",
-        token: token,
-        method: :PUT,
-        params: {
-          user_description: "#{name}",
-          category_guid: "#{category_guid}"
-        }
-      })
-    end
+        #response.pagination_data
+        response.transactions
+      end
 
     end
   end

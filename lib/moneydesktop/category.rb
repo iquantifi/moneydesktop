@@ -7,18 +7,16 @@ module Moneydesktop
 
     module ClassMethods
 
-    def categories(token)
-      response = query({
-        api: :data,
-        endpoint: "/categories",
-        method: :GET,
-        token: token,
-        params: {
-        }
-      })
+      def categories(token)
+        response = query({
+          api: :data,
+          endpoint: "/categories.json",
+          token: token,
+          method: :GET
+        })
 
-      response.categories
-    end
+        response.categories
+      end
 
     end
   end
