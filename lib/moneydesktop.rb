@@ -2,6 +2,7 @@ require 'httparty'
 require 'hashie'
 
 require 'moneydesktop/account'
+require 'moneydesktop/budget'
 require 'moneydesktop/category'
 require 'moneydesktop/error'
 require 'moneydesktop/institution'
@@ -13,10 +14,12 @@ require 'moneydesktop/version'
 
 module Moneydesktop
   include Moneydesktop::Account
+  include Moneydesktop::Budget
   include Moneydesktop::Category
   include Moneydesktop::Institution
   include Moneydesktop::Job
   include Moneydesktop::Member
+  include Moneydesktop::Transaction
   include Moneydesktop::User
 
   #self.base_url = 'https://int-sso.moneydesktop.com/:client_id'
