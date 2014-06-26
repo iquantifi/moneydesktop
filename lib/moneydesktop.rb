@@ -83,6 +83,8 @@ module Moneydesktop
       case response.code
       when 401
         raise TokenError.new(data)
+      when 403
+        raise ForbiddenError.new(data.message)
       when 404
         raise NotFoundError.new(data)
       when 500

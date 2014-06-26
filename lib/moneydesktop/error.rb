@@ -5,6 +5,9 @@ module Moneydesktop
   # Raised when Moneydesktop returns the HTTP status code 401
   class TokenError < ClientError; end
 
+  # Raised when Moneydesktop returns the HTTP status code 403
+  class ForbiddenError < ClientError; end
+
   # Raised when Moneydesktop returns the HTTP status code 404
   class NotFoundError < ClientError; end
 
