@@ -33,11 +33,11 @@ module Moneydesktop
       def create_member(token, institution_guid, credentials)
         response = query({
           api: :data,
-          endpoint: "/members",
+          endpoint: "/members.json",
           token: token,
           method: :POST,
           data: {
-            institution_guid: "#{institution_guid}.json",
+            institution_guid: "#{institution_guid}",
             credentials: credentials
           }
         })
