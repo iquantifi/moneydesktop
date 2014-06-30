@@ -18,6 +18,8 @@ module Moneydesktop
           }
         })
 
+        response.institutions ||= []
+
         #response.pagination_data
         response.institutions
       end
