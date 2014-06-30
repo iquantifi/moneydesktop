@@ -80,15 +80,15 @@ module Moneydesktop
         response.members
       end
 
-      def create_member_credential(token, member_guid, credential)
+      def create_member_credential(token, member_guid, credential_guid, value)
         response = query({
           api: :data,
           endpoint: "/members/#{member_guid}/credentials.json",
           token: token,
           method: :POST,
           data: {
-            credential_guid: credential.guid,
-            value: credential.value
+            credential_guid: credential_guid,
+            value: value
           }
           })
       end
