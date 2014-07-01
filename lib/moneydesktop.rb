@@ -60,7 +60,7 @@ module Moneydesktop
       @@apis[api]
     end
 
-    def query args
+    def query(args)
       method   = args[:method].to_s.downcase
       base_url = url args[:api]
       headers  = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
@@ -109,7 +109,7 @@ module Moneydesktop
 
     private
 
-    def convert_to_mash data
+    def convert_to_mash(data)
       if data.is_a? Hash
         Hashie::Mash.new(data)
       elsif data.is_a? Array
