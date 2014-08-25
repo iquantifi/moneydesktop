@@ -77,7 +77,7 @@ module Moneydesktop
       p args[:data]
 
       response = HTTParty.send method, base_url+args[:endpoint], body: args[:data].to_json, headers: headers
-      data     = response.parsed_response
+      data     = !!args[:skip_parse] ? response : response.parsed_response
 
       p '-----RESPONSE DATA-----'
       p response.code
