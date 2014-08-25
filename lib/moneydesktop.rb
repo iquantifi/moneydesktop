@@ -95,7 +95,7 @@ module Moneydesktop
       end
 
       if response.success?
-        if [ TrueClass, FalseClass, Fixnum ].include?(data.class)
+        if [ TrueClass, FalseClass, Fixnum ].include?(data.class) || !!args[:skip_parse]
           data
         else
           convert_to_mash(data)

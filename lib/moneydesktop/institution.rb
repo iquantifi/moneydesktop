@@ -41,7 +41,8 @@ module Moneydesktop
           api: :data,
           endpoint: "/institutions.json",
           token: token,
-          method: :GET
+          method: :GET,
+          skip_parse: true,
         })
 
         response
