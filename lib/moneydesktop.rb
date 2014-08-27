@@ -71,17 +71,8 @@ module Moneydesktop
       headers['Accept'] = 'application/vnd.moneydesktop.mdx.v5+json' if args[:api] == :mdx
       headers['Accept'] = 'application/vnd.moneydesktop.v1+json' if args[:api] == :data
 
-      p '-----REQUEST HEADERS-----'
-      p headers
-      p "#{base_url}#{args[:endpoint]}"
-      p args[:data]
-
       response = HTTParty.send method, base_url+args[:endpoint], body: args[:data].to_json, headers: headers
       data     = response.parsed_response
-
-      p '-----RESPONSE DATA-----'
-      p response.code
-      p data
 
       case response.code
       when 401
