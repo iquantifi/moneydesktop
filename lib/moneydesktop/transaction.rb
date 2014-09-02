@@ -7,15 +7,15 @@ module Moneydesktop
 
     module ClassMethods
 
-      def transactions(token)
+      def transactions(token, page = 1, records_per_page = 100)
         response = query({
           api: :data,
-          endpoint: "/transactions.json",
+          endpoint: "/transactions.json?page=#{page}&records_per_page=#{records_per_page}",
           token: token,
           method: :GET
         })
 
-        response.transactions
+        response
       end
 
       def transaction(token, transaction_guid)
