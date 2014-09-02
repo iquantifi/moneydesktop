@@ -43,7 +43,7 @@ module Moneydesktop
         response.institution
       end
 
-      def transactions(token, account_guid, page = 1, records_per_page = 100)
+      def account_transactions(token, account_guid, page = 1, records_per_page = 100)
         response = query({
           api: :data,
           endpoint: "/accounts/#{account_guid}/transactions.json?page=#{page}&records_per_page=#{records_per_page}",
